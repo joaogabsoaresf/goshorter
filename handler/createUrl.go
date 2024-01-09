@@ -63,7 +63,7 @@ func createNewUniqueID(lenght int) string {
 }
 
 func idExist(id string) bool {
-	filter := bson.M{"shorter_id": id}
+	filter := bson.M{"shorterid": id}
 	exist := config.FindDocumentFilter(db, filter)
 	return exist != nil
 }

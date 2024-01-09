@@ -6,6 +6,10 @@ func errParamIsRequired(name, typ string) error {
 	return fmt.Errorf("param %s (type %s) is required", name, typ)
 }
 
+func errDocumentNotFound(id string) error {
+	return fmt.Errorf("document %s not found", id)
+}
+
 // func errParamAlreadyExist(name, typ string) error {
 // 	return fmt.Errorf("param %s (type %s) already exist", name, typ)
 // }
