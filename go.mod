@@ -1,4 +1,4 @@
-module goshorter
+module github.com/joaogabsoaresf/goshorter
 
 go 1.21.5
 
