@@ -3,6 +3,7 @@ package config
 import (
 	"context"
 
+	"github.com/joaogabsoaresf/goshorter/schemas"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -74,4 +75,22 @@ func createDatabaseAndCollection(ctx context.Context, client *mongo.Client, dbNa
 	}
 
 	return nil
+}
+
+func CreateUrlDocument(db *mongo.Collection, url *schemas.Url) error {
+	_, err := db.InsertOne(ctx, url)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func FindDocumentFilter(db *mongo.Collection, filter bson.M) interface{} {
+	var result interface{}
+	info := db.FindOne(ctx, filter).Decode(&result)
+	if info != nil {
+		logger.Infof("no document find: %v", info)
+		return nil
+	}
+	return result
 }

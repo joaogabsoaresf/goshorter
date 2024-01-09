@@ -22,12 +22,11 @@ func Init() error {
 	return nil
 }
 
-func GetSQLite() *mongo.Collection {
+func GetMongoDB() *mongo.Collection {
 	return db
 }
 
 func GetLogger(p string) *Logger {
-	// init logger
 	logger = NewLogger(p)
 	return logger
 }
