@@ -8,10 +8,10 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func ShowUrlHandler(ctx *gin.Context) {
-	shorter_id := ctx.Query("shorter_id")
+func RedirectUrlHandler(ctx *gin.Context) {
+	shorter_id := ctx.Param("shortlink")
 	if shorter_id == "" {
-		sendError(ctx, http.StatusBadRequest, errParamIsRequired("shorter_id", "queryParameter").Error())
+		sendError(ctx, http.StatusNotFound, errParamIsRequired("shorter_id", "Parameter").Error())
 		return
 	}
 
@@ -23,5 +23,5 @@ func ShowUrlHandler(ctx *gin.Context) {
 		return
 	}
 
-	sendSuccess(ctx, "find", result)
+	sendRedirect(ctx, result.OriginalPath)
 }

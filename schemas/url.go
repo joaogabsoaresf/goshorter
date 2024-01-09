@@ -10,7 +10,7 @@ type Url struct {
 
 type UrlResponse struct {
 	ID           primitive.ObjectID `json:"_id"`
-	OriginalPath string             `json:"original_path"`
+	OriginalPath string             `json:"originalpath"`
 	Domain       string             `json:"domain"`
-	ShorterID    string             `json:"shorter_id"`
+	ShorterID    string             `json:"shorterid"`
 }

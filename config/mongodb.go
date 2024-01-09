@@ -85,8 +85,8 @@ func CreateUrlDocument(db *mongo.Collection, url *schemas.Url) error {
 	return nil
 }
 
-func FindDocumentFilter(db *mongo.Collection, filter bson.M) interface{} {
-	var result interface{}
+func FindDocumentFilter(db *mongo.Collection, filter bson.M) *schemas.UrlResponse {
+	var result *schemas.UrlResponse
 	info := db.FindOne(ctx, filter).Decode(&result)
 	if info != nil {
 		logger.Infof("no document find: %v", info)

@@ -13,4 +13,6 @@ func initializeRoutes(router *gin.Engine) {
 		v1.GET("/url", handler.ShowUrlHandler)
 		v1.POST("/url", handler.CreateUrlHandler)
 	}
+
+	router.GET("/:shortlink", handler.RedirectUrlHandler)
 }

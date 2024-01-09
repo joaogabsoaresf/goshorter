@@ -24,6 +24,10 @@ func sendSuccess(ctx *gin.Context, op string, data interface{}) {
 	})
 }
 
+func sendRedirect(ctx *gin.Context, redirectURL string) {
+	ctx.Redirect(http.StatusPermanentRedirect, redirectURL)
+}
+
 type ErrorResponse struct {
 	Message    string `json:"message"`
 	ErrorCorde string `json:"errorCord"`
