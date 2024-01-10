@@ -7,12 +7,14 @@ import (
 )
 
 var (
-	db     *mongo.Collection
-	logger *Logger
+	db      *mongo.Collection
+	logger  *Logger
+	secrets *Secrets
 )
 
 func Init() error {
 	var err error
+	secrets = InitializeSecrets()
 
 	db, err = InitializeMongoDB()
 	if err != nil {
@@ -29,4 +31,8 @@ func GetMongoDB() *mongo.Collection {
 func GetLogger(p string) *Logger {
 	logger = NewLogger(p)
 	return logger
+}
+
+func GetSecrets() *Secrets {
+	return secrets
 }

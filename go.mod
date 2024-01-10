@@ -3,7 +3,9 @@ module github.com/joaogabsoaresf/goshorter
 go 1.21.5
 
 require (
+	github.com/caarlos0/env/v10 v10.0.0
 	github.com/gin-gonic/gin v1.9.1
+	github.com/joho/godotenv v1.5.1
 	go.mongodb.org/mongo-driver v1.13.1
 )
 

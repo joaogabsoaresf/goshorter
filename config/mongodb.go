@@ -11,9 +11,18 @@ import (
 
 var ctx = context.TODO()
 
+func mongoHost(secrets *Secrets) string {
+	if secrets.Env == "PRODUCTION" {
+		return secrets.LocalMongoDBHost
+	} else {
+		return secrets.MongoDBHost
+	}
+}
+
 func InitializeMongoDB() (*mongo.Collection, error) {
 	logger := GetLogger("mongodb")
-	mongoHost := "mongodb://localhost:27017/"
+	secrets := GetSecrets()
+	mongoHost := mongoHost(secrets)
 	dbName := "goshorter"
 	collectionName := "url"
 

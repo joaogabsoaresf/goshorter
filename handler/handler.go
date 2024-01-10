@@ -6,11 +6,13 @@ import (
 )
 
 var (
-	logger *config.Logger
-	db     *mongo.Collection
+	logger  *config.Logger
+	db      *mongo.Collection
+	secrets *config.Secrets
 )
 
 func InitializeHandler() {
 	logger = config.GetLogger("handler")
 	db = config.GetMongoDB()
+	secrets = config.GetSecrets()
 }

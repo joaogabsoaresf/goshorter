@@ -11,6 +11,7 @@ var (
 
 func main() {
 	logger = *config.GetLogger("main")
+
 	// initialize config
 	err := config.Init()
 	if err != nil {
