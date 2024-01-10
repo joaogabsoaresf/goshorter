@@ -14,7 +14,9 @@ const (
 
 type Secrets struct {
 	Env              string `env:"ENV"`
-	MongoDBHost      string `env:"MONGO_DB_HOST"`
+	MongoDBHost      string `env:"MONGO_HOST"`
+	MongoDBPassword  string `env:"MONGO_PASSWORD"`
+	MongoDBUsername  string `env:"MONGO_USERNAME"`
 	LocalMongoDBHost string `env:"LOCAL_MONGO_DB_HOST"`
 }
 

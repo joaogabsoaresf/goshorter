@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/joaogabsoaresf/goshorter/schemas"
 	"go.mongodb.org/mongo-driver/bson"
@@ -13,9 +14,10 @@ var ctx = context.TODO()
 
 func mongoHost(secrets *Secrets) string {
 	if secrets.Env == "PRODUCTION" {
-		return secrets.LocalMongoDBHost
+		mongoHostString := fmt.Sprintf("mongodb+srv://%s:%s@%s/", secrets.MongoDBUsername, secrets.MongoDBPassword, secrets.MongoDBHost)
+		return mongoHostString
 	} else {
-		return secrets.MongoDBHost
+		return secrets.LocalMongoDBHost
 	}
 }
 
