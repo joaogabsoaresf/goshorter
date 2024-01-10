@@ -13,7 +13,7 @@ import (
 var ctx = context.TODO()
 
 func mongoHost(secrets *Secrets) string {
-	if secrets.Env == "PRODUCTION" {
+	if secrets.Env == "PROD" {
 		mongoHostString := fmt.Sprintf("mongodb+srv://%s:%s@%s/", secrets.MongoDBUsername, secrets.MongoDBPassword, secrets.MongoDBHost)
 		return mongoHostString
 	} else {

@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	ENV_FILE = ".env"
+	ENV_FILE = "./.env_files/.env"
 )
 
 type Secrets struct {
