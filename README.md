@@ -1,5 +1,23 @@
 # Encurtador de URL com Go, Gin e MongoDB
 
+A aplicação está online e pode ser usada perfeitamente. O link está anexado ao projeto, porém a página principal ainda se encontra vazia.
+
+Para receber o seu link encurtado basta enviar um POST seguindo o curl abaixo:
+
+```bash
+curl --location 'https://goshorter.rj.r.appspot.com/api/v1/url' \
+--header 'Content-Type: application/json' \
+--data '{
+    "original_path":"https://seu-site.com/"
+}'
+```
+
+Para visualizar as informações sobre o seu link encurtado, pode enviar um GET contendo o ID como parêmetro, seguindo o curl abaixo:
+
+```bash
+curl --location 'https://goshorter.rj.r.appspot.com/api/v1/url?shorter_id=VyQMs'
+```
+
 ## Pré-requisitos
 
 Certifique-se de ter o Go instalado em sua máquina. Caso ainda não tenha, você pode baixá-lo [aqui](https://golang.org/dl/).
@@ -29,7 +47,6 @@ O servidor será iniciado e estará acessível em [localhost:8080](http://localh
 Ainda não tive tempo de subir todas as atualizações, devo fazer em breve as seguintes adições:
 
 - Documentação com Swagger;
-- Deploy no App Engine do GCP;
 - Adição de testes;
 - Fluxo com Docker;
 
