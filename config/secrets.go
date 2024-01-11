@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	ENV_FILE = "./.env_files/.env"
+	ENV_FILE = "./dotenv-files/.env"
 )
 
 type Secrets struct {
