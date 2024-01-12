@@ -16,7 +16,7 @@ func ShowUrlHandler(ctx *gin.Context) {
 	}
 
 	filter := bson.M{"shorterid": shorter_id}
-	result := config.FindDocumentFilter(db, filter)
+	result := config.FindDocumentFilter(db, "url", filter)
 	if result == nil {
 		logger.Errorf("error url not found")
 		sendError(ctx, http.StatusNotFound, errDocumentNotFound("shorter_id").Error())

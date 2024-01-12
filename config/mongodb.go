@@ -21,12 +21,11 @@ func mongoHost(secrets *Secrets) string {
 	}
 }
 
-func InitializeMongoDB() (*mongo.Collection, error) {
+func InitializeMongoDB(collectionNameOptional ...string) (*mongo.Database, error) {
 	logger := GetLogger("mongodb")
 	secrets := GetSecrets()
 	mongoHost := mongoHost(secrets)
 	dbName := "goshorter"
-	collectionName := "url"
 
 	clientOptions := options.Client().ApplyURI(mongoHost)
 
@@ -49,13 +48,15 @@ func InitializeMongoDB() (*mongo.Collection, error) {
 	}
 
 	if !dbExists {
+		var collectionName string
+		collectionName = collectionNameOptional[0]
 		if err := createDatabaseAndCollection(ctx, client, dbName, collectionName); err != nil {
 			return nil, err
 		}
 		logger.Info("success to create the database and the collection!")
 	}
 
-	db := client.Database(dbName).Collection(collectionName)
+	db := client.Database(dbName)
 
 	return db, nil
 }
@@ -88,17 +89,17 @@ func createDatabaseAndCollection(ctx context.Context, client *mongo.Client, dbNa
 	return nil
 }
 
-func CreateUrlDocument(db *mongo.Collection, url *schemas.Url) error {
-	_, err := db.InsertOne(ctx, url)
+func CreateUrlDocument(db *mongo.Database, collectionName string, url *schemas.Url) error {
+	_, err := db.Collection(collectionName).InsertOne(ctx, url)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func FindDocumentFilter(db *mongo.Collection, filter bson.M) *schemas.UrlResponse {
+func FindDocumentFilter(db *mongo.Database, collectionName string, filter bson.M) *schemas.UrlResponse {
 	var result *schemas.UrlResponse
-	info := db.FindOne(ctx, filter).Decode(&result)
+	info := db.Collection(collectionName).FindOne(ctx, filter).Decode(&result)
 	if info != nil {
 		logger.Infof("no document find: %v", info)
 		return nil

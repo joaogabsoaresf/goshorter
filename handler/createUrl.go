@@ -26,7 +26,7 @@ func CreateUrlHandler(ctx *gin.Context) {
 		ShorterID:    createNonExistentID(),
 	}
 
-	if err := config.CreateUrlDocument(db, &url); err != nil {
+	if err := config.CreateUrlDocument(db, "url", &url); err != nil {
 		logger.Errorf("url creation error: %v", err.Error())
 		sendError(ctx, http.StatusInternalServerError, err.Error())
 		return
@@ -64,6 +64,6 @@ func createNewUniqueID(lenght int) string {
 
 func idExist(id string) bool {
 	filter := bson.M{"shorterid": id}
-	exist := config.FindDocumentFilter(db, filter)
+	exist := config.FindDocumentFilter(db, "url", filter)
 	return exist != nil
 }

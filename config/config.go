@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	db      *mongo.Collection
+	db      *mongo.Database
 	logger  *Logger
 	secrets *Secrets
 )
@@ -24,7 +24,7 @@ func Init() error {
 	return nil
 }
 
-func GetMongoDB() *mongo.Collection {
+func GetMongoDB() *mongo.Database {
 	return db
 }
 

@@ -7,7 +7,7 @@ import (
 
 var (
 	logger  *config.Logger
-	db      *mongo.Collection
+	db      *mongo.Database
 	secrets *config.Secrets
 )
 
