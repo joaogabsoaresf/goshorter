@@ -36,3 +36,26 @@ func isValidURL(url string) bool {
 
 	return urlRegex.MatchString(url)
 }
+
+type CreateUserRequest struct {
+	Name      string `json:"username" binding:"required"`
+	Email     string `json:"email" binding:"required"`
+	Password  string `json:"password" binding:"required"`
+	SubDomain string `json:"subdomain" binding:"required"`
+}
+
+func (r *CreateUserRequest) ValidateUserRequest() error {
+	if r.Name == "" {
+		return errParamIsRequired("username", "string")
+	}
+	if r.Email == "" {
+		return errParamIsRequired("email", "string")
+	}
+	if r.Password == "" {
+		return errParamIsRequired("password", "string")
+	}
+	if r.SubDomain == "" {
+		return errParamIsRequired("subdomain", "string")
+	}
+	return nil
+}
