@@ -1,11 +1,13 @@
 # Encurtador de URL com Go, Gin e MongoDB
 
+### Obs: No momento o dominio está sem o certificado de segurança, isso será resolvido nos próximos dias.
+
 A aplicação está online e pode ser usada perfeitamente. O link está anexado ao projeto, porém a página principal ainda se encontra vazia.
 
 Para receber o seu link encurtado basta enviar um POST seguindo o curl abaixo:
 
 ```bash
-curl --location 'https://goshorter.rj.r.appspot.com/api/v1/url' \
+curl --location 'http://makeshorter.biz/api/v1/url' \
 --header 'Content-Type: application/json' \
 --data '{
     "original_path":"https://seu-site.com/"
@@ -15,7 +17,7 @@ curl --location 'https://goshorter.rj.r.appspot.com/api/v1/url' \
 Para visualizar as informações sobre o seu link encurtado, pode enviar um GET contendo o ID como parêmetro, seguindo o curl abaixo:
 
 ```bash
-curl --location 'https://goshorter.rj.r.appspot.com/api/v1/url?shorter_id=VyQMs'
+curl --location 'http://makeshorter.biz/api/v1/url?shorter_id=VyQMs'
 ```
 
 ## Pré-requisitos
